@@ -45,17 +45,23 @@ var server = {
 		}
 		return ms
 	},
-	timestamp(format) {
+	timestamp(format, timezone) {
 
 		var moment = require('moment')
+		
+		if (timezone && timezone === 'us-east') {
+			timezone = "America/New_York"
+		}
+		
+		if (timezone && timezone === 'us-west') {
+			timezone = "America/Los_Angeles"
+		}
 
-		var config = this.cache('server_config')
-
-		if (config && config.timezone) {
+		if (timezone) {
 
 			require('moment-timezone')
 
-			return moment().tz(config.timezone).format(format || 'LLL')
+			return moment().tz(timezone).format(format || 'LLL')
 
 		}
 
