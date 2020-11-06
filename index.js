@@ -243,8 +243,9 @@ var server = {
 	use(path, plugin) {
 		if (path && plugin) {
 			app.use(path, plugin)
+		} else {
+			app.use(path)
 		}
-		app.use(path)
 	},
 	log(message) {
 		if (!message) {
