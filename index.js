@@ -155,7 +155,7 @@ var server = {
 						resolve([])
 						return
 					}
-					if (results.legnth) {
+					if (results.length) {
 						results = results.filter(function(item) {
 						  for (var key in query) {
 						    if (item[key] === undefined || item[key] != query[key])
