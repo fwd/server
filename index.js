@@ -113,9 +113,6 @@ var server = {
 						defaults[key] = []
 					}
 					db.defaults(defaults).write()
-					if (typeof value === "object" && !value.id) {
-						value.id = server.uuid()
-					}
 					db.set(key, value).write().then((item) => {
 						resolve(value)
 					})
@@ -158,13 +155,15 @@ var server = {
 						resolve([])
 						return
 					}
-					results = results.filter(function(item) {
-					  for (var key in query) {
-					    if (item[key] === undefined || item[key] != query[key])
-					      return false;
-					  }
-					  return true;
-					})
+					if (results.legnth) {
+						results = results.filter(function(item) {
+						  for (var key in query) {
+						    if (item[key] === undefined || item[key] != query[key])
+						      return false;
+						  }
+						  return true;
+						})
+					}
 					resolve(results)
 				})
 			})

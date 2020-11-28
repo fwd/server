@@ -1,6 +1,6 @@
 {
   "name": "@fwd/server",
-  "version": "1.0.22",
+  "version": "1.0.25",
   "description": "A module for quick ExpressJS server deployment. ",
   "main": "index.js",
   "scripts": {},
