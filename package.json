@@ -1,7 +1,7 @@
 {
   "name": "@fwd/server",
   "version": "1.0.26",
-  "description": "A module for quick ExpressJS server deployment. ",
+  "description": "A full-stack NodeJS server built on ExpressJS, with lots of goodies to expedite development.",
   "main": "index.js",
   "scripts": {},
   "author": "Forward Miami <hello@forward.miami>",

@@ -2,7 +2,7 @@
 
 <h1 align="center">@fwd/server 🦾</h1>
 
-> A NodeJS library to simplify authentication.
+> A full-stack NodeJS server built on ExpressJS, with lots of goodies to expedite development.
 
 ## Install
 
