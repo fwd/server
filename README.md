@@ -1,32 +1,118 @@
-<h1 align="center">@fwd/server</h1>
+![Cover](https://raw.githubusercontent.com/fwd/server/master/.github/cover.png)
 
-> 
+<h1 align="center">@fwd/server 🦾</h1>
 
+> A NodeJS library to simplify authentication.
 
+## Install
 
+```sh
+npm install @fwd/server
+```
 
+## Usage
 
+### Basic Example
 
+```js
 
+const server = require('@fwd/server')
 
+server.get('/', (req, res) => {
+	res.render('index', {
+		message: "Hello, World!"
+	})
+})
 
-## Author
+server.start(process.argv[2] || 80, __dirname)
 
-👤  **Forward Miami**
+```
 
-* Website: [https://forward.miami](https://forward.miami)
+## Available Methods
+
+### sleep
+
+```js
+
+;(async () => {
+	await server.sleep(1000)
+})()
+
+```
+
+### time
+
+```js
+
+;(async () => {
+	await server.time(1, 'hour') // 1 hour in milliseconds
+})()
+
+```
+
+### timestamp
+
+```js
+
+;(async () => {
+	await server.timestamp() // UNIX timestamp
+	await server.timestamp('LL') // September 28, 1994
+	await server.timestamp('LLL') // September 28, 1994 4:30PM
+})()
+
+```
+
+### cron
+
+```js
+
+;(async () => {
+	await server.cron(() => {
+		console.log("Hello")
+	}, 'every 1 hour') 
+})()
+
+```
+
+### database
+
+```js
+
+;(async () => {
+	await server.database.find('users', { id: 1 }) // find user with id of 1
+	await server.database.update('users', 1, { name: "John" }) // update user with id of 1 
+	await server.database.remove('users', 1)  // remove user with id of 1
+	await server.database.create('users', { name: john }) // creates user, id will be generated if not provided 
+})()
+
+```
+
+### uuid
+
+```js
+;(async () => {
+	await server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002 
+	await server.uuid(true) // short uuid, 9e471b08
+})()
+```
+
+## 👤 Author
+
+**Forward Miami**
+
 * Github: [@fwd](https://github.com/fwd)
+* Website: [https://forward.miami](https://forward.miami)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](/issues).
+Contributions, issues and feature requests are welcome! Feel free to check [issues page](https://github.com/fwd/server/issues).
 
-## Show your support
+## ⭐️ Show your support
 
-Give a ⭐️ if this project helped you!
+Give a star if this project helped you, and help us continue maintaining this project by contributing to it or becoming a sponsor.
+
+[Become a sponsor to fwd](https://github.com/sponsors/fwd)
 
 ## 📝 License
 
-MIT
-
-Copyright © 2020 [Forward Miami](https://forward.miami).
+Copyright © 2020 [Forward Miami](https://forward.miami). This project is [Apache-2.0](https://spdx.org/licenses/Apache-2.0.html) licensed.
