@@ -44,9 +44,7 @@ server.start(process.argv[2] || 80, __dirname)
 
 ```js
 
-;(async () => {
-	await server.time(1, 'hour') // 1 hour in milliseconds
-})()
+server.time(1, 'hour') // 1 hour in milliseconds
 
 ```
 
@@ -54,11 +52,9 @@ server.start(process.argv[2] || 80, __dirname)
 
 ```js
 
-;(async () => {
-	await server.timestamp() // UNIX timestamp
-	await server.timestamp('LL') // September 28, 1994
-	await server.timestamp('LLL') // September 28, 1994 4:30PM
-})()
+server.timestamp() // UNIX timestamp
+server.timestamp('LL') // September 28, 1994
+server.timestamp('LLL') // September 28, 1994 4:30PM
 
 ```
 
@@ -66,11 +62,9 @@ server.start(process.argv[2] || 80, __dirname)
 
 ```js
 
-;(async () => {
-	await server.cron(() => {
-		console.log("Hello")
-	}, 'every 1 hour') 
-})()
+server.cron(() => {
+	console.log("Hello")
+}, 'every 1 hour')
 
 ```
 
@@ -90,10 +84,8 @@ server.start(process.argv[2] || 80, __dirname)
 ### uuid
 
 ```js
-;(async () => {
-	await server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002 
-	await server.uuid(true) // short uuid, 9e471b08
-})()
+server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002 
+server.uuid(true) // short uuid, 9e471b08
 ```
 
 ## 👤 Author
