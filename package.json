@@ -1,6 +1,6 @@
 {
   "name": "@fwd/server",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A full-stack NodeJS server built on ExpressJS, with lots of goodies to expedite development.",
   "main": "index.js",
   "author": "Forward Miami <hello@forward.miami>",

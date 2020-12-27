@@ -69,8 +69,6 @@ var server = {
 
 		return timestamp
 
-		// return moment().format(format || 'LLL')
-
 	},
 	cron(action, interval) {
 
@@ -154,7 +152,7 @@ var server = {
 				const adapter = new FileSync(`${path}${database ? database + '.json' : 'db.json'}`)
 				low(adapter).then((db) => {	
 					var results = db.get(key).value()
-					if (!query) {
+					if (!query || typeof results !== "object") {
 						resolve(results)
 						return
 					}
