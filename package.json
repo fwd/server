@@ -1,9 +1,8 @@
 {
   "name": "@fwd/server",
-  "version": "1.0.26",
+  "version": "1.1.0",
   "description": "A full-stack NodeJS server built on ExpressJS, with lots of goodies to expedite development.",
   "main": "index.js",
-  "scripts": {},
   "author": "Forward Miami <hello@forward.miami>",
   "license": "MIT",
   "homepage": "https://github.com/fwd/server",

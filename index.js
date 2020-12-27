@@ -48,24 +48,28 @@ var server = {
 	timestamp(format, timezone) {
 
 		var moment = require('moment')
-		
-		if (timezone && timezone === 'us-east') {
-			timezone = "America/New_York"
-		}
-		
-		if (timezone && timezone === 'us-west') {
-			timezone = "America/Los_Angeles"
-		}
+
+		var timestamp = moment()
 
 		if (timezone) {
-
+			
 			require('moment-timezone')
 
-			return moment().tz(timezone).format(format || 'LLL')
+			if (timezone === 'us-east') timezone = 'America/New_York'
+			if (timezone === 'us-west') timezone = 'America/Los_Angeles'
 
+			timestamp = timestamp.tz(timezone)
 		}
 
-		return moment().format(format || 'LLL')
+		if (format) {
+			timestamp = timestamp.format(format || 'LLL')
+		} else {
+			timestamp = timestamp.unix()
+		}
+
+		return timestamp
+
+		// return moment().format(format || 'LLL')
 
 	},
 	cron(action, interval) {
@@ -113,6 +117,9 @@ var server = {
 						defaults[key] = []
 					}
 					db.defaults(defaults).write()
+					if (typeof value === "object" && !value.id) {
+						value.id = server.uuid()
+					}
 					db.set(key, value).write().then((item) => {
 						resolve(value)
 					})
@@ -155,15 +162,13 @@ var server = {
 						resolve([])
 						return
 					}
-					if (results.length) {
-						results = results.filter(function(item) {
-						  for (var key in query) {
-						    if (item[key] === undefined || item[key] != query[key])
-						      return false;
-						  }
-						  return true;
-						})
-					}
+					results = results.filter(function(item) {
+					  for (var key in query) {
+					    if (item[key] === undefined || item[key] != query[key])
+					      return false;
+					  }
+					  return true;
+					})
 					resolve(results)
 				})
 			})
@@ -242,9 +247,8 @@ var server = {
 	use(path, plugin) {
 		if (path && plugin) {
 			app.use(path, plugin)
-		} else {
-			app.use(path)
 		}
+		app.use(path)
 	},
 	log(message) {
 		if (!message) {
