@@ -152,7 +152,7 @@ var server = {
 				const adapter = new FileSync(`${path}${database ? database + '.json' : 'db.json'}`)
 				low(adapter).then((db) => {	
 					var results = db.get(key).value()
-					if (!query || typeof results !== "object") {
+					if (!query || !Array.isArray(results)) {
 						resolve(results)
 						return
 					}
