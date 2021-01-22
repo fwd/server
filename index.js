@@ -245,6 +245,7 @@ var server = {
 	use(path, plugin) {
 		if (path && plugin) {
 			app.use(path, plugin)
+			return
 		}
 		app.use(path)
 	},
