@@ -1,44 +1,47 @@
-const _ = require('lodash')
 const fs = require('fs')
 const ejs = require('ejs')
-const express = require('express')
+const _ = require('lodash')
 const cors = require('cors')
 const path = require('path')
-const cache = require('memory-cache')
+const axios = require('axios')
+const moment = require('moment')
+const cache = require('@fwd/cache')
+
+const express = require('express')
 const app = express();
-const axios = require('axios');
-
-const low = require('lowdb')
-
-const FileSync = require('lowdb/adapters/FileAsync')
-
-// helpers
-_.clone = function(data) {
-	return JSON.parse(JSON.stringify(data))
-}
 
 var server = {
+
 	path: './',
 	routes: [],
 	http: axios,
+	moment: moment,
 	utilities: _,
-	wait(delay) {
-		return this.sleep(delay)
-	},
-	exec(cmd) {
 
+	config(value) {
+		if (value) {
+			cache('fwd-server-config', value)
+			return
+		}
+		return cache('fwd-server-config')
+	},
+
+	exec(cmd) {
 		const exec = require('child_process').exec;
-		
 		return new Promise((resolve, reject) => {
 			exec(cmd, (error, stdout, stderr) => {
 			    if (error) {
-				console.log(error);
+					console.log(error);
 			    }
 			    resolve(stdout ? stdout : stderr);
 			})
-		});
-		
+		})
 	},
+	
+	wait(delay) {
+		return this.sleep(delay)
+	},
+
 	sleep(delay) {
 		return new Promise((resolve) => {
 			setTimeout(() => {
@@ -46,22 +49,12 @@ var server = {
 			}, delay)
 		})
 	},
+	
 	time(int, string) {
-		var ms
-		if (string === 'seconds' || string === 'second') {
-			ms = int * 1000
-		}
-		if (string === 'minutes' || string === 'minute') {
-			ms = int * 60000
-		}
-		if (string === 'hours' || string === 'hour') {
-			ms = int * 3600000
-		}
-		return ms
+		return require('@fwd/time')(int, string)
 	},
+	
 	timestamp(format, timezone) {
-
-		var moment = require('moment')
 
 		var timestamp = moment()
 
@@ -73,6 +66,7 @@ var server = {
 			if (timezone === 'us-west') timezone = 'America/Los_Angeles'
 
 			timestamp = timestamp.tz(timezone)
+
 		}
 
 		if (format) {
@@ -84,140 +78,57 @@ var server = {
 		return timestamp
 
 	},
+
 	cron(action, interval) {
 
-		var phrase = interval.split(' ')
+		if (typeof interval === 'string') {
+	
+			var phrase = interval.split(' ')
 
-		var repeat = phrase[0]
-		var int = phrase[1]
-		var rate = phrase[2]
+			var repeat = phrase[0]
+			var int = phrase[1]
+			var rate = phrase[2]
 
-		interval = this.time(int, rate)
+			interval = this.time(int, rate)
 
-		setInterval(() => {
+		}
+
+		return setInterval(() => {
 			action()
 		}, interval)
 
 	},
-	database: {
-		create(key, value, database) {
-			return new Promise((resolve) => {
-				const path = server.path ? server.path + '/' : './'
-				const adapter = new FileSync(`${path}${database ? database + '.json' : 'db.json'}`)
-				low(adapter).then((db) => {	
-					var defaults = {}
-					if (!db.get(key).value()) {
-						defaults[key] = []
-					}
-					db.defaults(defaults).write()
-					if (typeof value === "object" && !value.id) {
-						value.id = server.uuid()
-					}
-					db.get(key).push(value).write().then((item) => {
-						resolve(value)
-					})
-				})
-			})
-		},
-		set(key, value, database) {
-			return new Promise((resolve) => {
-				const path = server.path ? server.path + '/' : './'
-				const adapter = new FileSync(`${path}${database ? database + '.json' : 'db.json'}`)
-				low(adapter).then((db) => {	
-					var defaults = {}
-					if (!db.get(key).value()) {
-						defaults[key] = []
-					}
-					db.defaults(defaults).write()
-					if (typeof value === "object" && !value.id) {
-						value.id = server.uuid()
-					}
-					db.set(key, value).write().then((item) => {
-						resolve(value)
-					})
-				})
-			})
-		},
-		update(key, id, update, database) {
-			return new Promise((resolve) => {
-				const path = server.path ? server.path + '/' : './'
-				const adapter = new FileSync(`${path}${database ? database + '.json' : 'db.json'}`)
-				low(adapter).then((db) => {	
-					db.get(key).find({ id: id }).assign(update).write().then((item) => {
-						resolve(update)
-					})
-				})
-			})
-		},
-		remove(key, id, database) {
-			return new Promise((resolve) => {
-				const path = server.path ? server.path + '/' : './'
-				const adapter = new FileSync(`${path}${database ? database + '.json' : 'db.json'}`)
-				low(adapter).then((db) => {	
-					db.get(key).remove({ id: id }).write().then(() => {
-						resolve()
-					})
-				})
-			})
-		},
-		find(key, query, database) {
-			return new Promise((resolve) => {
-				const path = server.path ? server.path + '/' : './'
-				const adapter = new FileSync(`${path}${database ? database + '.json' : 'db.json'}`)
-				low(adapter).then((db) => {	
-					var results = db.get(key).value()
-					if (!query || !Array.isArray(results)) {
-						resolve(results)
-						return
-					}
-					if (!results) {
-						resolve([])
-						return
-					}
-					results = results.filter(function(item) {
-					  for (var key in query) {
-					    if (item[key] === undefined || item[key] != query[key])
-					      return false;
-					  }
-					  return true;
-					})
-					resolve(results)
-				})
-			})
-		}
+	
+	database: (plugin, config) => {
+		return require('@fwd/database')(plugin, config)
 	},
-	uuid() {
-		return 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx'.replace(/[xy]/g, function(c) {
+
+	uuid(length, version, prepend, no_dashes) {
+
+		var uuid = `xxxxxxx-xxxx-${ version ? version : 'x' }xxx-xxxx-xxxxxxxx`.replace(/[xy]/g, function(c) {
 			var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-			return v.toString(16);
+			return v.toString(16)
 		})
-	},
-
-	generate(template, data, distpath) {
-
-		var views = this.path ? this.path + '/views' : 'views'
-
-		var public = this.path ? this.path + '/public' : 'public'
 		
-		var string = fs.readFileSync(`${views}/${template}.ejs`, 'utf-8');
-
-		if (distpath) {
-			
-			var destination = require('parse-filepath')(distpath)
-
-			if (!fs.existsSync(destination.dir)) {
-			    fs.mkdirSync(destination.dir, { recursive: true });
-			}
-
+		if (length) {
+			uuid = uuid.slice(0, typeof length === 'number' ? length : 7)
 		}
 
-		fs.writeFileSync(distpath || `${public}/${template}.html`, ejs.render(string, data));
+		if (no_dashes) {
+			uuid = uuid.split('-').join('')
+		}
+
+		if (prepend) {
+			uuid = `${prepend}${uuid}`
+		}
+
+		return uuid
 
 	},
 
 	start(port, path) {
 
-		var config = this.cache('server_config') || {}
+		var config = cache('fwd-server-config') || {}
 
 		if (path) this.path = path
 
@@ -263,41 +174,9 @@ var server = {
 		}
 		app.use(path)
 	},
-	log(message) {
-		if (!message) {
-			return server.cache('server_logs') 
-		}
-		if (server.cache('server_logs')) {
-			var logs = server.cache('server_logs')
-				logs.push(message)
-			server.cache('server_logs', logs, 86400000) // 24 hour retention
-			return
-		}
-		var logs = []
-			logs.push(message)
-			server.cache('server_logs', logs, 86400000) // 24 hour retention
-	},
 	cache(key, value, exp) {
-		if (key && value) {
-			cache.put(key, JSON.stringify(value), exp, function(key, value) {}) // Time in ms
-			return
-		}
-		if (key && !value) {
-			return JSON.parse(cache.get(key))
-		}
-	},
-	config(value) {
-
-		if (value) {
-			cache.put('server_config', JSON.stringify(value), null, function(key, value) {}) // Time in ms
-			return
-		}
-
-		if (!value) {
-			return JSON.parse(cache.get('server_config'))
-		}
-		
-	},
+		return cache(key, value, exp)
+	}
 }
 
 var methods = ['get', 'post', 'put', 'patch', 'delete']

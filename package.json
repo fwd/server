@@ -14,14 +14,14 @@
     "url": "https://github.com/fwd/server/deploy/issues"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "@fwd/cache": "github:fwd/cache",
+    "@fwd/database": "github:fwd/database",
+    "@fwd/time": "github:fwd/time",
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "ejs": "2.7.1",
     "express": "^4.17.1",
-    "lowdb": "^1.0.0",
-    "memory-cache": "^0.2.0",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.27",
-    "parse-filepath": "^1.0.2"
+    "moment-timezone": "^0.5.27"
   }
 }
