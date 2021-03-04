@@ -126,9 +126,9 @@ var server = {
 
 	},
 
-	start(port, path) {
-
-		var config = cache('fwd-server-config') || {}
+	start(port, path, config) {
+		
+		config = config || {}
 
 		if (path) this.path = path
 
@@ -144,7 +144,7 @@ var server = {
 
 		app.set('view engine', config.viewEngine || 'ejs');
 
-		app.set('views', config.viewFolder || views);
+		app.set('views', config.viewsFolder || views);
 
 		app.use(express.static(config.publicFolder || public))
 
