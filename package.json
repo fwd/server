@@ -17,6 +17,7 @@
     "@fwd/cache": "github:fwd/cache",
     "@fwd/database": "github:fwd/database",
     "@fwd/time": "github:fwd/time",
+    "@fwd/cron": "github:fwd/cron",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
     "ejs": "2.7.1",
