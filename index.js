@@ -159,7 +159,7 @@ var server = {
 			})
 		})
 		
-		console.log("http://localhost:" + port)
+		console.log( config.browserUrl || "http://localhost:" + port )
 		
 		app.listen(port)
 
