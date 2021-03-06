@@ -15,16 +15,6 @@ var server = {
 	path: './',
 	routes: [],
 	http: axios,
-	moment: moment,
-	utilities: _,
-
-	config(value) {
-		if (value) {
-			cache('fwd-server-config', value)
-			return
-		}
-		return cache('fwd-server-config')
-	},
 
 	exec(cmd) {
 		const exec = require('child_process').exec;
@@ -79,7 +69,7 @@ var server = {
 
 	},
 
-	cron(action, interval) {
+	cron(action, interval, runImmediately) {
 
 		if (typeof interval === 'string') {
 	
@@ -93,9 +83,15 @@ var server = {
 
 		}
 
-		return setInterval(() => {
+		if (runImmediately) {
+			action()
+		}
+		
+		var cron = setInterval(() => {
 			action()
 		}, interval)
+		
+		return cron
 
 	},
 	
