@@ -140,6 +140,10 @@ var server = {
 		app.set('views', config.viewsFolder || views);
 
 		app.use(express.static(config.publicFolder || public))
+		
+		if (config.uploadFolder) {
+			app.use(express.static(config.uploadFolder))
+		}
 
 		port = port || 80
 
