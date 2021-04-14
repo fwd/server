@@ -3,6 +3,7 @@ const axios = require('axios')
 const moment = require('moment')
 const cron = require('@fwd/cron')
 const cache = require('@fwd/cache')
+const database = require('@fwd/database')
 
 const express = require('express')
 const app = express();
@@ -93,7 +94,7 @@ var server = {
 	},
 	
 	database: (plugin, config) => {
-		return require('@fwd/database')(plugin, config)
+		return database(plugin, config)
 	},
 
 	uuid(length, version, prepend, no_dashes) {
