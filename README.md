@@ -2,7 +2,7 @@
 
 <h1 align="center">@fwd/server 🦾</h1>
 
-> A full-stack NodeJS server built on ExpressJS, with lots of goodies to expedite development.
+> A wrapper around ExpressJS that that makes web development actually fun. 
 
 ## Install
 
