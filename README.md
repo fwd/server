@@ -24,7 +24,7 @@ server.get('/', (req, res) => {
 	})
 })
 
-server.start(process.argv[2] || 80, __dirname)
+server.start(8080)
 
 ```
 
