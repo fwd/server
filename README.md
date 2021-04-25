@@ -2,7 +2,7 @@
 
 <h1 align="center">@fwd/server 🦾</h1>
 
-> A wrapper around ExpressJS that that makes web development actually fun. 
+> A framework built on top of ExpressJS, that that makes NodeJS web development fun. 
 
 ## Install
 
