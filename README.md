@@ -19,9 +19,7 @@ npm install fwd/server
 const server = require('@fwd/server')
 
 server.get('/', (req, res) => {
-	res.render('index', {
-		message: "Hello, World!"
-	})
+	res.send("Hello, World!")
 })
 
 server.start(8080)
