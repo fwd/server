@@ -2,7 +2,7 @@
 
 <h1 align="center">@fwd/server 🦾</h1>
 
-> A framework built on top of ExpressJS. Makes NodeJS back-end web, fun. 
+> A framework built on top of ExpressJS. Makes NodeJS back-end fun again. 
 
 ## Install
 
