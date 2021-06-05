@@ -1,3 +1,4 @@
+const fs = require("fs")
 const cors = require('cors')
 const axios = require('axios')
 const moment = require('moment')
@@ -138,7 +139,9 @@ var server = {
 
 		app.set('view engine', config.viewEngine || 'ejs');
 
-		app.set('views', config.viewsFolder || views);
+		if (fs.existsSync(views)) {
+		   app.set('views', config.viewsFolder || views);
+		}
 
 		app.use(express.static(config.publicFolder || public))
 		
