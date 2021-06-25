@@ -136,6 +136,10 @@ var server = {
 		app.use(express.json({
 			limit: config.jsonLimit || '999mb'
 		}))
+		
+		if (config.extended) {
+			app.use(express.urlencoded({extended: true}))
+		}
 
 		app.set('view engine', config.viewEngine || 'ejs');
 
