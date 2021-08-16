@@ -28,6 +28,17 @@ server.start(8080)
 
 ## Available Methods
 
+### http (Axios)
+
+```js
+
+;(async () => {
+	var joke = await server.http.get('https://api.chucknorris.io/jokes/random')
+	console.log( joke.data )
+})()
+
+```
+
 ### sleep
 
 ```js
