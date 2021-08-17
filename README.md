@@ -47,7 +47,7 @@ server.start(8080)
 
 ## Available Methods
 
-### database
+### Database
 
 ```js
 
@@ -60,7 +60,7 @@ server.start(8080)
 
 ```
 
-[@fwd/database](https://github.com/fwd/database)
+More info: [@fwd/database](https://github.com/fwd/database)
 
 
 ### Http (Axios)
@@ -93,7 +93,7 @@ server.time(1, 'hour') // 1 hour in milliseconds
 
 ```
 
-[@fwd/time](https://github.com/fwd/time)
+More info: [@fwd/time](https://github.com/fwd/time)
 
 
 ### Timestamp
@@ -116,7 +116,8 @@ console.log( server.cache('unique_key') ) // { fname: 'Joe' }
 
 ```
 
-[@fwd/cache](https://github.com/fwd/cache)
+More info: [@fwd/cache](https://github.com/fwd/cache)
+
 
 ### Cron
 
@@ -128,7 +129,7 @@ server.cron(() => {
 
 ```
 
-[@fwd/cron](https://github.com/fwd/cron)
+More info: [@fwd/cron](https://github.com/fwd/cron)
 
 ### UUID
 
@@ -148,7 +149,7 @@ server.uuid(true) // short uuid, 9e471b08
 
 Give a ⭐️ if this project helped you!
 
-Contributions, issues and feature requests are welcome! <br />Feel free to check [issues page](https://github.com/fwd/server/issues).
+Contributions, issues and feature requests are welcome! Feel free to check [issues page](https://github.com/fwd/server/issues).
 
 ## 📝 License
 
