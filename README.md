@@ -26,10 +26,44 @@ server.start(8080)
 
 ```
 
+### Middleware
+
+```js
+
+const server = require('@fwd/server')
+
+server.use((req, res, next) => {
+	console.log( req.originalUrl )
+	next()
+})
+
+server.get('/', (req, res) => {
+	res.send("Hello, World!")
+})
+
+server.start(8080)
+
+```
+
 ## Available Methods
 
+### database
 
-### http (Axios)
+```js
+
+;(async () => {
+	await server.database.create('users', { name: john }) // creates user, id will be generated if not provided 
+	await server.database.findOne('users', { id: 1 }) // find user with id of 1
+	await server.database.update('users', 1, { name: "John" }) // update user with id of 1 
+	await server.database.remove('users', 1)  // remove user with id of 1
+})()
+
+```
+
+[@fwd/database](https://github.com/fwd/database)
+
+
+### Http (Axios)
 
 ```js
 
@@ -40,17 +74,18 @@ server.start(8080)
 
 ```
 
-### sleep
+### Sleep
 
 ```js
 
 ;(async () => {
 	await server.sleep(1000)
-})()
+	await server.wait(1000) // alias
+})() 
 
 ```
 
-### time
+### Time
 
 ```js
 
@@ -60,7 +95,8 @@ server.time(1, 'hour') // 1 hour in milliseconds
 
 [@fwd/time](https://github.com/fwd/time)
 
-### timestamp
+
+### Timestamp
 
 ```js
 
@@ -70,7 +106,7 @@ server.timestamp('LLL') // September 28, 1994 4:30PM
 
 ```
 
-### in-memory cache
+### In-Memory Cache
 
 ```js
 
@@ -82,7 +118,7 @@ console.log( server.cache('unique_key') ) // { fname: 'Joe' }
 
 [@fwd/cache](https://github.com/fwd/cache)
 
-### cron
+### Cron
 
 ```js
 
@@ -94,22 +130,7 @@ server.cron(() => {
 
 [@fwd/cron](https://github.com/fwd/cron)
 
-### database
-
-```js
-
-;(async () => {
-	await server.database.find('users', { id: 1 }) // find user with id of 1
-	await server.database.update('users', 1, { name: "John" }) // update user with id of 1 
-	await server.database.remove('users', 1)  // remove user with id of 1
-	await server.database.create('users', { name: john }) // creates user, id will be generated if not provided 
-})()
-
-```
-
-[@fwd/database](https://github.com/fwd/database)
-
-### uuid
+### UUID
 
 ```js
 server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002 
