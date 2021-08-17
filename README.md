@@ -28,6 +28,7 @@ server.start(8080)
 
 ## Available Methods
 
+
 ### http (Axios)
 
 ```js
@@ -57,6 +58,8 @@ server.time(1, 'hour') // 1 hour in milliseconds
 
 ```
 
+[@fwd/time](https://github.com/fwd/time)
+
 ### timestamp
 
 ```js
@@ -67,6 +70,18 @@ server.timestamp('LLL') // September 28, 1994 4:30PM
 
 ```
 
+### in-memory cache
+
+```js
+
+server.cache('unique_key', { fname: 'Joe' })
+
+console.log( server.cache('unique_key') ) // { fname: 'Joe' }
+
+```
+
+[@fwd/cache](https://github.com/fwd/cache)
+
 ### cron
 
 ```js
@@ -76,6 +91,8 @@ server.cron(() => {
 }, 'every 1 hour')
 
 ```
+
+[@fwd/cron](https://github.com/fwd/cron)
 
 ### database
 
@@ -89,6 +106,8 @@ server.cron(() => {
 })()
 
 ```
+
+[@fwd/database](https://github.com/fwd/database)
 
 ### uuid
 
