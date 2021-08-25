@@ -147,10 +147,10 @@ var server = {
 		   app.set('views', config.viewsFolder || views);
 		}
 
-		app.use(express.static(config.publicFolder || public))
+		app.use(express.static(config.publicFolder || public, { maxAge: config.maxAge || '1d' }))
 		
 		if (config.uploadFolder) {
-			app.use(express.static(config.uploadFolder))
+			app.use(express.static(config.uploadFolder, { maxAge: config.maxAge || '1d' }))
 		}
 
 		port = port || 80
