@@ -146,11 +146,13 @@ var server = {
 		if (fs.existsSync(views)) {
 		   app.set('views', config.viewsFolder || views);
 		}
+		
+		var maxAge = config.maxAge ? config.maxAge : 'no-store'
 
-		app.use(express.static(config.publicFolder || public, { maxAge: config.maxAge || '1d' }))
+		app.use(express.static(config.publicFolder || public, { maxAge }))
 		
 		if (config.uploadFolder) {
-			app.use(express.static(config.uploadFolder, { maxAge: config.maxAge || '1d' }))
+			app.use(express.static(config.uploadFolder, { maxAge }))
 		}
 
 		port = port || 80
