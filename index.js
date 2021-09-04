@@ -159,6 +159,8 @@ var server = {
 
 	start(port, path, config) {
 		
+		var self = this
+		
 		config = config || {}
 
 		if (path) this.path = path
@@ -196,6 +198,7 @@ var server = {
 		this.routes.map(route => {
 			if (route.middleware) {
 				app[route.method](route.path, route.middleware, function(req, res) {
+					req.render = self.render
 					route.action(req, res)
 				})
 				return
