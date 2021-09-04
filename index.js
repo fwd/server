@@ -120,6 +120,42 @@ var server = {
 		return uuid
 
 	},
+	
+	render(template, data, contentType) {
+
+		return new Promise((resolve, reject) => {
+
+			if (!template || typeof template !== 'string') return reject({ message: "Template is required"})
+
+			try	{
+
+				var templatePath = template && template.includes('.') ? template : path.join(__dirname, `./views/${template}.ejs`)
+
+				fs.readFile(templatePath, 'utf-8', function(err, body) {
+
+					try {
+						var response = {}
+						response['Content-Type'] = contentType || 'text/html; charset=utf-8'
+						response.data = ejs.render(body, data)
+						resolve(response)
+					} catch (e) {
+						resolve({
+							error: true,
+							code: 500,
+							message: e.message || `Template ${template} could not be found`
+						})
+					}
+
+
+				});
+
+			} catch (e) {
+				resolve(e)
+			}
+
+		})
+
+	},
 
 	start(port, path, config) {
 		
