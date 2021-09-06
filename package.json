@@ -15,10 +15,11 @@
   },
   "dependencies": {
     "@fwd/cache": "github:fwd/cache",
+    "@fwd/cron": "github:fwd/cron",
     "@fwd/database": "github:fwd/database",
     "@fwd/time": "github:fwd/time",
-    "@fwd/cron": "github:fwd/cron",
     "axios": "^0.21.1",
+    "chrono-node": "^2.3.1",
     "cors": "^2.8.5",
     "ejs": "2.7.1",
     "express": "^4.17.1",

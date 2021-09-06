@@ -6,6 +6,8 @@ const cron = require('@fwd/cron')
 const cache = require('@fwd/cache')
 const database = require('@fwd/database')
 
+const chrono = require('chrono-node');
+
 const express = require('express')
 const app = express();
 
@@ -42,6 +44,10 @@ var server = {
 	time(int, string) {
 		return require('@fwd/time')(int, string)
 	},
+
+	date(string, format, timezone) {
+		return moment(chrono.parseDate(string)).tz(timezone || 'America/New_York').format(format || 'LLL');
+	},
 	
 	timestamp(format, timezone) {
 
@@ -59,9 +65,15 @@ var server = {
 		}
 
 		if (format) {
+
+			format = format.toLowerCase()
+
 			timestamp = timestamp.format(format || 'LLL')
+
 		} else {
+
 			timestamp = timestamp.unix()
+
 		}
 
 		return timestamp
