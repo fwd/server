@@ -18,6 +18,8 @@ var server = {
 	path: './',
 	routes: [],
 	http: axios,
+	
+	config: {},
 
 	encrypt: async (string, int) => await bcrypt.hash(string, int || 10),
 	
