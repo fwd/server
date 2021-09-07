@@ -23,6 +23,7 @@ const server = require('@fwd/server')
 
 server.use((req, res, next) => {
 	// middleware
+	next()
 })
 
 server.get('/', (req, res) => {
