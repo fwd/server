@@ -20,8 +20,17 @@ npm install fwd/server
 
 const server = require('@fwd/server')
 
+
+server.use((req, res, next) => {
+	console.log("Hello: ", req.ip)
+})
+
 server.get('/', (req, res) => {
 	res.send("Hello, World!")
+})
+
+server.post('/login', (req, res) => {
+	res.send(req.body)
 })
 
 server.start(8080)
