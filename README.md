@@ -30,7 +30,7 @@ server.get('/', (req, res) => {
 	res.send("Hello, World!")
 })
 
-server.post('/login', async (req, res) => {
+server.post('/register', async (req, res) => {
 
 	var user = await server.database.create('users', {
 		id: server.uuid(),
