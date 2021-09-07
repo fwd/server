@@ -1,4 +1,4 @@
-![Cover](https://raw.githubusercontent.com/fwd/database/master/.github/banner.png)
+![Cover](https://raw.githubusercontent.com/fwd/server/master/.github/banner.png)
 
 # fwd/server
 
