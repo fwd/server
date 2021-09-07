@@ -35,6 +35,7 @@ server.post('/login', async (req, res) => {
 	var user = await server.database.create('users', {
 		id: server.uuid(),
 		name: req.body.name,
+		password: await server.encrypt(req.body.password),
 		created: server.timestamp()
 	})
 	
