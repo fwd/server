@@ -46,12 +46,15 @@ var server = {
 	},
 
 	date(string, format, timezone) {
-		return moment(chrono.parseDate(string)).tz(timezone || 'America/New_York').format(format || 'LLL');
+		timezone = timezone || config.timezone || 'America/New_York'
+		return moment(chrono.parseDate(string)).tz(timezone).format(format || 'LLL');
 	},
 	
 	timestamp(format, timezone) {
 
 		var timestamp = moment()
+		
+		timezone = timezone || config.timezone
 
 		if (timezone) {
 			
