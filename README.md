@@ -22,15 +22,15 @@ const server = require('@fwd/server')
 
 
 server.use((req, res, next) => {
-	console.log("Hello: ", req.ip)
+	// middleware
 })
 
 server.get('/', (req, res) => {
 	res.send("Hello, World!")
 })
 
-server.post('/login', (req, res) => {
-	res.send(req.body)
+server.post('/login', async (req, res) => {
+	res.send(await login(req.body))
 })
 
 server.start(8080)
