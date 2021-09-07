@@ -31,7 +31,15 @@ server.get('/', (req, res) => {
 })
 
 server.post('/login', async (req, res) => {
-	res.send(await login(req.body))
+
+	var user = await server.database.create('users', {
+		id: server.uuid(),
+		name: req.body.name,
+		created: server.timestamp()
+	})
+	
+	res.send(user)
+	
 })
 
 server.start(8080)
