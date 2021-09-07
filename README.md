@@ -44,7 +44,7 @@ server.post('/register', async (req, res) => {
 })
 
 server.start(8080, {
-	timezone: 'America/New_York' // how many headaches will this save
+	timezone: 'America/New_York' // optional, just showing it off
 })
 
 ```
