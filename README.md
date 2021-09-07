@@ -20,11 +20,31 @@ npm install fwd/server
 
 const server = require('@fwd/server')
 
+
+server.use((req, res, next) => {
+	// middleware
+	next()
+})
+
 server.get('/', (req, res) => {
 	res.send("Hello, World!")
 })
 
-server.start(8080)
+server.post('/login', async (req, res) => {
+
+	var user = await server.database.create('users', {
+		id: server.uuid(),
+		name: req.body.name,
+		created: server.timestamp()
+	})
+	
+	res.send(user)
+	
+})
+
+server.start(8080, {
+	timezone: 'America/New_York' // how many headaches will this save
+})
 
 ```
 
