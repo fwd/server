@@ -1,8 +1,10 @@
-![Cover](https://raw.githubusercontent.com/fwd/server/master/.github/cover.png)
+![Cover](https://raw.githubusercontent.com/fwd/database/master/.github/banner.png)
 
-<h1 align="center">@fwd/server 🦾</h1>
+# fwd/server
 
-> A framework built on top of ExpressJS. Makes NodeJS back-end fun again. 
+> Open Source Back-end Development Framework for NodeJS.
+
+#### This package is in active development by the team at [Formsend](https://formsend.org). Pull requests and feature requests are welcomed.
 
 ## Install
 
@@ -12,7 +14,7 @@ npm install fwd/server
 
 ## Usage
 
-### Basic Example
+### HTTP Server Example (ExpressJs)
 
 ```js
 
@@ -46,6 +48,18 @@ server.start(8080)
 ```
 
 ## Available Methods
+
+
+### Date (Chrono-node)
+
+> Added September 7th, 2021
+
+```js
+
+server.date('An appointment on Sep 12-13-2014');
+// Fri Sep 12 2014 12:00:00 GMT-0500 (CDT)
+
+```
 
 ### Database
 
@@ -150,6 +164,24 @@ server.uuid(true) // short uuid, 9e471b08
 Give a ⭐️ if this project helped you!
 
 Contributions, issues and feature requests are welcome! Feel free to check [issues page](https://github.com/fwd/server/issues).
+
+## ♥️ Donate 
+
+We accept Crypto donations at the following addresses: 
+
+```
+# Nano
+nano_3gf57qk4agze3ozwfhe8w6oap3jmdb4ofe9qo1ra3wcs5jc888rwyt61ymea
+
+# Bitcoin
+bc1qcgvew2a7ta3f7xy5999tdwyd8clrvdtpe2uvj5
+
+# Doge
+D9U1FLygkMydx3DE2sXgnuFpHm7ePm3Zwe
+
+# Ethereum
+0xdD4691Dc9562FB262e4b2076bE255303243f271d
+```
 
 ## 📝 License
 
