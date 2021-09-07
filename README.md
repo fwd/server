@@ -39,6 +39,9 @@ server.post('/register', async (req, res) => {
 		created: server.timestamp()
 	})
 	
+	// fetching it again just to show off API
+	user = await server.database.findOne('users', { name: req.body.name })
+	
 	res.send(user)
 	
 })
