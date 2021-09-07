@@ -8,6 +8,8 @@ const database = require('@fwd/database')
 
 const chrono = require('chrono-node');
 
+const bcrypt = require('bcrypt')
+
 const express = require('express')
 const app = express();
 
@@ -16,6 +18,10 @@ var server = {
 	path: './',
 	routes: [],
 	http: axios,
+
+	encrypt: async (string, int) => await bcrypt.hash(string, int || 10),
+	
+	decrypt: async (key, string) => await bcrypt.compare(string, key),
 
 	exec(cmd) {
 		const exec = require('child_process').exec;

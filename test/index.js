@@ -17,6 +17,15 @@ const server = require('../index')
 	console.log( await server.time(1, 'second') )
 	console.log('Should be 1000 ms')
 
+	console.log('Encrypt')
+	var secret = 'password'
+	var encrypted = await server.encrypt(secret)
+	console.log( "encrypted", encrypted )
+	console.log('Decrypt')
+	console.log( "Real", await server.decrypt(encrypted, secret) )
+	console.log( "Fake", await server.decrypt(encrypted, secret + '1') )
+	// console.log('Should be 1000 ms')
+
 	console.log('Timestamp')
 	console.log( await server.timestamp('LLL') )
 	console.log( await server.timestamp('LLL', 'us-east') )
@@ -42,14 +51,6 @@ const server = require('../index')
 	server.cache('hello', { id: 5 })
 	await server.sleep(1000)
 	console.log( server.cache('hello') )
-
-	console.log('Config')
-	server.config({ 
-		database: {
-			type: 'local',
-			database: 'database2.json'
-		} 
-	})
 
 	console.log("Database")
 	var database = server.database('local', {
