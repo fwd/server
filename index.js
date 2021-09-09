@@ -54,7 +54,7 @@ var server = {
 	},
 
 	date(string, format, timezone) {
-		timezone = timezone || config.timezone || 'America/New_York'
+		timezone = timezone || this.config.timezone || 'America/New_York'
 		return moment(chrono.parseDate(string)).tz(timezone).format(format || 'LLL');
 	},
 	
@@ -62,7 +62,7 @@ var server = {
 
 		var timestamp = moment()
 		
-		timezone = timezone || config.timezone
+		timezone = timezone || this.config.timezone
 
 		if (timezone) {
 			
