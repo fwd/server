@@ -74,13 +74,13 @@ server.start(8080)
 ## Available Methods
 
 
-### Date (Chrono-node)
+### Date Parsing (Chrono-node)
 
 > Added September 7th, 2021
 
 ```js
 
-server.date('An appointment on Sep 12-13-2014');
+server.date('next friday');
 // Fri Sep 12 2014 12:00:00 GMT-0500 (CDT)
 
 ```
