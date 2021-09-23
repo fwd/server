@@ -36,7 +36,7 @@ server.post('/register', async (req, res) => {
 		id: server.uuid(),
 		name: req.body.name,
 		password: await server.encrypt(req.body.password),
-		created: server.timestamp()
+		created_at: server.timestamp()
 	})
 	
 	// fetching it again just to show off API
