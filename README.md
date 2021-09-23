@@ -141,6 +141,7 @@ More info: [@fwd/time](https://github.com/fwd/time)
 server.timestamp() // UNIX timestamp
 server.timestamp('LL') // September 28, 1994
 server.timestamp('LLL') // September 28, 1994 4:30PM
+server.timestamp('LLL', 'America/New_York') // Optional, pass timezone.
 
 ```
 
