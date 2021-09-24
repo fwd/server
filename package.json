@@ -21,7 +21,6 @@
     "chrono-node": "^2.3.1",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
-    "chrono-node": "^2.3.1",
     "cors": "^2.8.5",
     "ejs": "2.7.1",
     "express": "^4.17.1",
