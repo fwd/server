@@ -184,7 +184,7 @@ server.uuid(true) // short uuid, 9e471b08
 📍 Miami, Florida (Capital of Crypto)
 
 * Github: [@fwd](https://github.com/fwd)
-* Website: [https://forward.miami](https://fwd.dev)
+* Website: [https://fwd.dev](https://fwd.dev)
 
 ## 🤝 Contributing
 
