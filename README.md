@@ -4,29 +4,32 @@
 
 > Back-end Development Framework for NodeJS w/ Express (and other goodies) baked in.
 
-## Install
+## 1.0 Install
 
 ```sh
 npm install fwd/server
 ```
 
-## Usage
-
-### HTTP Server Example (ExpressJs)
+### 1.1 Simple example
 
 ```js
 
-const server = require('@fwd/server') // package name has a '@'
-
-
-server.use((req, res, next) => {
-	// middleware
-	next()
-})
+const server = require('@fwd/server')
 
 server.get('/', (req, res) => {
 	res.send("Hello, World!")
 })
+
+server.start(8080, {
+	timezone: 'America/New_York' // optional, just showing it off
+})
+
+
+### 1.2 Another example
+
+```js
+
+const server = require('@fwd/server')
 
 server.post('/register', async (req, res) => {
 
@@ -44,13 +47,11 @@ server.post('/register', async (req, res) => {
 	
 })
 
-server.start(8080, {
-	timezone: 'America/New_York' // optional, just showing it off
-})
+server.start(8081) 
 
 ```
 
-### Middleware
+### 1.3 Middleware
 
 ```js
 
@@ -69,8 +70,7 @@ server.start(8080)
 
 ```
 
-## Available Methods
-
+## 2. Available Methods
 
 ### Date Parsing (Chrono-node)
 
