@@ -23,7 +23,7 @@ server.get('/', (req, res) => {
 server.start(8080, {
 	timezone: 'America/New_York' // optional, just showing it off
 })
-
+```
 
 ## Advanced example
 
