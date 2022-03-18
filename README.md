@@ -4,13 +4,14 @@
 
 > Back-end Development Framework for NodeJS w/ Express (and other goodies) baked in.
 
-## 1.0 Install
+## Install
 
-```sh
+```bash
+# npm init
 npm install fwd/server
 ```
 
-### 1.1 Simple example
+## Simple example
 
 ```js
 
@@ -25,7 +26,7 @@ server.start(8080, {
 })
 
 
-### 1.2 Another example
+## Advanced example
 
 ```js
 
@@ -51,13 +52,14 @@ server.start(8081)
 
 ```
 
-### 1.3 Middleware
+## Middleware
 
 ```js
 
 const server = require('@fwd/server')
 
 server.use((req, res, next) => {
+	// do stuff
 	console.log( req.originalUrl )
 	next()
 })
