@@ -79,7 +79,7 @@ server.start(8080)
 ### Http (Axios)
 
 ```js
-
+const server = require('@fwd/server')
 ;(async () => {
 	var joke = await server.http.get('https://api.chucknorris.io/jokes/random')
 	console.log( joke.data )
@@ -90,12 +90,13 @@ server.start(8080)
 ### Database
 
 ```js
-
+const server = require('@fwd/server')
+const database = server.database
 ;(async () => {
-	await server.database.create('users', { name: john }) // creates user, id will be generated if not provided 
-	await server.database.findOne('users', { id: 1 }) // find user with id of 1
-	await server.database.update('users', 1, { name: "John" }) // update user with id of 1 
-	await server.database.remove('users', 1)  // remove user with id of 1
+	await database.create('users', { name: john }) // creates user, id will be generated if not provided 
+	await database.findOne('users', { id: 1 }) // find user with id of 1
+	await database.update('users', 1, { name: "John" }) // update user with id of 1 
+	await database.remove('users', 1)  // remove user with id of 1
 })()
 
 ```
@@ -103,7 +104,7 @@ server.start(8080)
 ### Timestamp
 
 ```js
-
+const server = require('@fwd/server')
 server.timestamp() // UNIX timestamp
 server.timestamp('LL') // September 28, 1994
 server.timestamp('LLL') // September 28, 1994 4:30PM
@@ -114,6 +115,7 @@ server.timestamp('LLL', 'America/New_York') // Optional, pass timezone.
 ### In-Memory Cache
 
 ```js
+const server = require('@fwd/server')
 
 server.cache('unique_key', { fname: 'Joe' })
 
@@ -129,7 +131,7 @@ More info: [@fwd/cache](https://github.com/fwd/cache)
 > Added September 7th, 2021
 
 ```js
-
+const server = require('@fwd/server')
 server.date('next friday');
 // Fri Sep 12 2014 12:00:00 GMT-0500 (CDT)
 
@@ -140,7 +142,7 @@ More info: [@fwd/database](https://github.com/fwd/database)
 ### Sleep
 
 ```js
-
+const server = require('@fwd/server')
 ;(async () => {
 	await server.sleep(1000)
 	await server.wait(1000) // alias
@@ -151,7 +153,7 @@ More info: [@fwd/database](https://github.com/fwd/database)
 ### Time
 
 ```js
-
+const server = require('@fwd/server')
 server.time(1, 'hour') // 1 hour in milliseconds
 
 ```
@@ -161,7 +163,7 @@ More info: [@fwd/time](https://github.com/fwd/time)
 ### Cron
 
 ```js
-
+const server = require('@fwd/server')
 server.cron(() => {
 	console.log("Hello")
 }, 'every 1 hour')
@@ -173,6 +175,7 @@ More info: [@fwd/cron](https://github.com/fwd/cron)
 ### Uuid
 
 ```js
+const server = require('@fwd/server')
 server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002 
 server.uuid(true) // short uuid, 9e471b08
 ```
