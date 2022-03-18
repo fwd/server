@@ -7,7 +7,6 @@
 ## Install
 
 ```bash
-# npm init
 npm install fwd/server
 ```
 
