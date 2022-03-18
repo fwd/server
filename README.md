@@ -210,7 +210,7 @@ nano_3gf57qk4agze3ozwfhe8w6oap3jmdb4ofe9qo1ra3wcs5jc888rwyt61ymea
 
 MIT License
 
-Copyright © 2021 [Forward Miami](https://forward.miami).
+Copyright © 2022 [Fresh Web Designs](https://fwd.dev).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
