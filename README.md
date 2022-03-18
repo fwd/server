@@ -21,9 +21,11 @@ server.get('/', (req, res) => {
 })
 
 server.start(8080, {
-	timezone: 'America/New_York' // optional, just showing it off
+   timezone: 'America/New_York' // optional, just showing it off
 })
 ```
+
+All of human evolution has been leading up to this NPM pacakge. It has CORS included. So simple to use, and deploy.
 
 ## Advanced example
 
@@ -73,14 +75,15 @@ server.start(8080)
 
 ## 2. Available Methods
 
-### Date Parsing (Chrono-node)
 
-> Added September 7th, 2021
+### Http (Axios)
 
 ```js
 
-server.date('next friday');
-// Fri Sep 12 2014 12:00:00 GMT-0500 (CDT)
+;(async () => {
+	var joke = await server.http.get('https://api.chucknorris.io/jokes/random')
+	console.log( joke.data )
+})()
 
 ```
 
@@ -96,42 +99,6 @@ server.date('next friday');
 })()
 
 ```
-
-More info: [@fwd/database](https://github.com/fwd/database)
-
-
-### Http (Axios)
-
-```js
-
-;(async () => {
-	var joke = await server.http.get('https://api.chucknorris.io/jokes/random')
-	console.log( joke.data )
-})()
-
-```
-
-### Sleep
-
-```js
-
-;(async () => {
-	await server.sleep(1000)
-	await server.wait(1000) // alias
-})() 
-
-```
-
-### Time
-
-```js
-
-server.time(1, 'hour') // 1 hour in milliseconds
-
-```
-
-More info: [@fwd/time](https://github.com/fwd/time)
-
 
 ### Timestamp
 
@@ -157,6 +124,40 @@ console.log( server.cache('unique_key') ) // { fname: 'Joe' }
 More info: [@fwd/cache](https://github.com/fwd/cache)
 
 
+### Date Parsing (Chrono-node)
+
+> Added September 7th, 2021
+
+```js
+
+server.date('next friday');
+// Fri Sep 12 2014 12:00:00 GMT-0500 (CDT)
+
+```
+
+More info: [@fwd/database](https://github.com/fwd/database)
+
+### Sleep
+
+```js
+
+;(async () => {
+	await server.sleep(1000)
+	await server.wait(1000) // alias
+})() 
+
+```
+
+### Time
+
+```js
+
+server.time(1, 'hour') // 1 hour in milliseconds
+
+```
+
+More info: [@fwd/time](https://github.com/fwd/time)
+
 ### Cron
 
 ```js
@@ -169,7 +170,7 @@ server.cron(() => {
 
 More info: [@fwd/cron](https://github.com/fwd/cron)
 
-### UUID
+### Uuid
 
 ```js
 server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002 
@@ -178,10 +179,12 @@ server.uuid(true) // short uuid, 9e471b08
 
 ## 👤 Author
 
-**Forward Miami**
+**Fresh Web Designs**
+
+📍 Miami, Florida (Capital of Crypto)
 
 * Github: [@fwd](https://github.com/fwd)
-* Website: [https://forward.miami](https://forward.miami)
+* Website: [https://forward.miami](https://fwd.dev)
 
 ## 🤝 Contributing
 
