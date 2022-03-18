@@ -2,9 +2,7 @@
 
 # fwd/server
 
-> Open Source Back-end Development Framework for NodeJS.
-
-#### This package is in active development by the team at [Formsend](https://formsend.org). Pull requests and feature requests are welcomed.
+> Back-end Development Framework for NodeJS w/ Express (and other goodies) baked in.
 
 ## Install
 
@@ -18,7 +16,7 @@ npm install fwd/server
 
 ```js
 
-const server = require('@fwd/server')
+const server = require('@fwd/server') // package name has a '@'
 
 
 server.use((req, res, next) => {
@@ -194,18 +192,11 @@ Contributions, issues and feature requests are welcome! Feel free to check [issu
 
 We accept Crypto donations at the following addresses: 
 
+https://nano.to/Development
+
 ```
 # Nano
 nano_3gf57qk4agze3ozwfhe8w6oap3jmdb4ofe9qo1ra3wcs5jc888rwyt61ymea
-
-# Bitcoin
-bc1qcgvew2a7ta3f7xy5999tdwyd8clrvdtpe2uvj5
-
-# Doge
-D9U1FLygkMydx3DE2sXgnuFpHm7ePm3Zwe
-
-# Ethereum
-0xdD4691Dc9562FB262e4b2076bE255303243f271d
 ```
 
 ## 📝 License
