@@ -25,7 +25,7 @@ server.start(8080, {
 })
 ```
 
-All of human evolution has been leading up to this NPM pacakge. It has CORS included. So simple to use, and deploy.
+All of human evolution has lead to this NPM pacakge. It has CORS included. So simple to use, and deploy.
 
 ## Advanced example
 
