@@ -2,7 +2,7 @@
 
 # fwd/server
 
-> NodeKS Web Framework with lots of methods for everything you may need. 
+> NodeJS Web Framework with lots of methods for everything you may need. 
 
 ## Install
 
@@ -180,11 +180,22 @@ server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002
 server.uuid(true) // short uuid, 9e471b08
 ```
 
+### Exec
+
+```js
+const server = require('@fwd/server')
+;(async () => {
+	var cpu_usage = await server.exec(`awk '/cpu /{print 100*($2+$4)/($2+$4+$5)}' /proc/stat`)
+	console.log( cpu_usage )
+})()
+
+```
+
 ## 👤 Author
 
 **Fresh Web Designs**
 
-📍 Miami, Florida (Capital of Crypto)
+📍 Miami, Florida (Crypto Capital of the World)
 
 * Github: [@fwd](https://github.com/fwd)
 * Website: [https://fwd.dev](https://fwd.dev)
