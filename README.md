@@ -2,7 +2,7 @@
 
 # fwd/server
 
-> Back-end Development Framework for NodeJS w/ Express (and other goodies) baked in.
+> NodeKS Web Framework with lots of methods for everything you may need. 
 
 ## Install
 
