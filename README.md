@@ -1,6 +1,6 @@
 ![Cover](https://raw.githubusercontent.com/fwd/server/master/.github/banner.png)
 
-# fwd/server
+# @fwd/server
 
 > NodeJS Web Framework with lots of methods for everything you may need. 
 
