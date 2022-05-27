@@ -6,18 +6,17 @@
 
 ## Features
 
-- [Complete Web Framework (ExpressJS)](#full-server-example)
-- [Complete HTTP Client (ExpressJS)](#built-in-http-client-axios)
-- [Built-In In-Memory Manager](#in-memory-caching)
-- [Built-In JSON Database](#built-in-database-json-file)
-- [Built-in Crypto UUID Generator](#generate-crypto-uuid)
+- [Full Web Server (ExpressJS)](#full-server-example)
+- [HTTP Library (Axios)](#built-in-http-client-axios)
+- [In-Memory Manager](#in-memory-caching)
+- [SQL-Like JSON Database](#built-in-database-json-file)
+- [Crypto UUID Generator](#generate-crypto-uuid)
 - [Natural Language Date Parsing](#natural-language-date-parsing)
 - [Natural Language Timestamps](#natural-language-timestamps)
 - [Natural Language Cron](#natural-language-cron)
 - [Filesystem Read/Write](#built-in-file-readwrite)
 - [Filesystem Prepend/Append](#built-in-uuid-generator)
 - [Execute Shell from NodeJS](#execute-shell-from-nodejs)
-- [MomentJS](#full-server-example)
 
 ## Install
 
