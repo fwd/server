@@ -131,7 +131,7 @@ console.log( server.cache('unique_key') ) // { fname: 'Joe' }
 
 ```js
 const server = require('@fwd/server')
-server.date('next friday');
+console.log( server.date('next friday') )
 // Fri Sep 12 2014 12:00:00 GMT-0500 (CDT)
 
 ```
