@@ -6,6 +6,8 @@ const cron = require('@fwd/cron')
 const cache = require('@fwd/cache')
 const database = require('@fwd/database')
 
+const crypto = require('crypto');
+
 const chrono = require('chrono-node');
 
 const express = require('express')
@@ -16,7 +18,7 @@ var server = {
 	path: './',
 	routes: [],
 	http: axios,
-	
+	moment: moment,
 	config: {},
 
 	exec(cmd) {
@@ -31,16 +33,14 @@ var server = {
 		})
 	},
 	
-	
 	read(filepath, config) {
 		return new Promise((resolve, reject) => {
-			fs.readFile(filepath, config || { encoding: 'utf-8' }, function(err,data) {
-			    if (!err) {
-			        resolve(data)
-			    } else {
-			    	reject(err)
-			    }
-			});
+			// fs.readOrFail would be nice
+			if(fs.existsSync(filepath)) {
+			  resolve(fs.readFileSync(filepath, 'utf-8'))
+			} else {
+			  resolve(false)
+			}
 		})
 	},
 
@@ -50,6 +50,50 @@ var server = {
 			    if (err) return reject(err)
 			    resolve(body)
 			}); 
+		})
+	},
+
+	prepend(filepath, body) {
+		return new Promise((resolve, reject) => {
+			// fs.prependFile would be nice
+			if(fs.existsSync(filepath)) {
+				const data = fs.readFileSync(filepath)
+				const fd = fs.openSync(filepath, 'w+')
+				const insert = Buffer.from(`${body} \n`)
+				fs.writeSync(fd, insert, 0, insert.length, 0)
+				fs.writeSync(fd, data, 0, data.length, insert.length)
+				fs.close(fd, (err) => {
+				  if (err) return reject(err)
+				  resolve(body)
+				});
+			} else {
+				return false
+			}
+		})
+	},
+
+	append(filepath, body) {
+		return new Promise((resolve, reject) => {
+			if(fs.existsSync(filepath)) {
+				fs.appendFile(filepath, body, function (err) {
+					if (err) return reject(err)
+					resolve(body)
+				});
+			} else {
+				resolve(false)
+			}
+		})
+	},
+
+	// For user safety, naming it 'unlink' instead of 'delete' 
+	unlink(filepath) {
+		return new Promise((resolve, reject) => {
+			if(fs.existsSync(filepath)) {
+				fs.unlinkSync(filepath)
+				resolve()
+			} else {
+				return resolve(false)
+			}
 		})
 	},
 	
@@ -137,15 +181,12 @@ var server = {
 		return database(plugin, config)
 	},
 
-	uuid(length, version, prepend, no_dashes) {
+	uuid(length, prepend, no_dashes) {
 
-		var uuid = `xxxxxxx-xxxx-${ version ? version : 'x' }xxx-xxxx-xxxxxxxx`.replace(/[xy]/g, function(c) {
-			var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-			return v.toString(16)
-		})
+		var uuid = crypto.randomUUID()
 		
 		if (length) {
-			uuid = uuid.slice(0, typeof length === 'number' ? length : 7)
+			uuid = uuid.slice(0, typeof length === 'number' ? length : 8)
 		}
 
 		if (no_dashes) {
