@@ -37,10 +37,10 @@ server.get('/', (req, res) => {
 	res.send("Hello, World!")
 })
 
-server.start(8080, {
-   timezone: 'America/New_York' // optional, just showing it off
-})
+server.start(8080)
 ```
+
+> Static files will be served from **/public** by default.
 
 ## Full Server Example
 
@@ -61,7 +61,9 @@ server.post('/register', async (req, res) => {
 	
 })
 
-server.start(8080) 
+server.start(8080, {
+   timezone: 'America/New_York' // optional, just showing it off
+}) 
 ```
 
 ## HTTP Middleware
