@@ -78,7 +78,6 @@ server.get('/joke', async (req, res) => {
 server.get('/user/:id', async (req, res) => {
 
 	var user = await server.database.findOne('users', { id: req.params.id })
-			  // await server.database.findOne('users', req.params.id)
 
 	if (!user) return res.send({ error: 401 })
 	
