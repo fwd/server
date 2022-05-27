@@ -38,7 +38,8 @@ server.get('/', (req, res) => {
 }) 
 
 server.get('/joke', async (req, res) => {
-	res.send( { joke: (await server.http.get('https://api.chucknorris.io/jokes/random')).data } )
+	var random_joke = (await server.http.get('https://api.chucknorris.io/jokes/random')).data
+	res.send( { joke: random_joke } )
 })
 
 server.start(8080)
