@@ -69,9 +69,9 @@ server.post('/register', async (req, res) => {
 
 server.get('/joke', async (req, res) => {
 	
-	var random_joke = (await server.http.get('https://api.chucknorris.io/jokes/random')).data
+	var joke = (await server.http.get('https://api.chucknorris.io/jokes/random')).data
 	
-	res.send( { joke: random_joke } )
+	res.send( { joke } )
 
 })
 
