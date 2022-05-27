@@ -122,7 +122,9 @@ server.start(8080)
 ```js
 const database = server.database
 ;(async () => {
-	await database.create('users', { name: john }) // creates user, id will be generated if not provided 
+	await database.get('users') // list all users
+	await database.create('users', { name: john }) // creates user, id & create_at will be generated if not provided
+	await database.find('users', { name: 'Joe' }) // Filter users by query
 	await database.findOne('users', { id: 1 }) // find user with id of 1
 	await database.update('users', 1, { name: "John" }) // update user with id of 1 
 	await database.remove('users', 1)  // remove user with id of 1
@@ -130,7 +132,7 @@ const database = server.database
 
 ```
 
-See All Available Plugins: [@fwd/database](https://github.com/fwd/database)
+Dedicated Github: [@fwd/database](https://github.com/fwd/database)
 
 ## In-Memory Caching
 
