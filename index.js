@@ -272,11 +272,7 @@ var methods = ['get', 'post', 'put', 'patch', 'delete']
 
 methods.map((method) => {
 	server[method] = function(path, action) {
-		this.routes.push({
-			method: method,
-			path: path,
-			action: action
-		})
+		this.routes.push({ method, path, action })
 	}
 })
 
