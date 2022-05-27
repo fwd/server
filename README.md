@@ -35,6 +35,10 @@ const server = require('@fwd/server')
 ```js
 server.get('/', (req, res) => {
 	res.send("Hello, World!")
+}) 
+
+server.get('/joke', async (req, res) => {
+	res.send( { joke: (await server.http.get('https://api.chucknorris.io/jokes/random')).data } )
 })
 
 server.start(8080)
@@ -50,7 +54,6 @@ server.post('/register', async (req, res) => {
 	var user = await server.database.create('users', {
 		id: server.uuid(),
 		name: req.body.name,
-		password: await server.encrypt(req.body.password),
 		created_at: server.timestamp()
 	})
 	
