@@ -6,7 +6,7 @@
 
 ## Features
 
-- [Full Web Server (ExpressJS)](#full-server-example)
+- [Full Web Server (ExpressJS)](#advanced-example)
 - [HTTP Library (Axios)](#built-in-http-client-axios)
 - [In-Memory Manager](#in-memory-caching)
 - [SQL-Like JSON Database](#built-in-database-json-file)
@@ -42,9 +42,16 @@ server.start(8080)
 
 > Static files will be served from **/public** by default.
 
-## Full Server Example
+## Advanced Example
+
+> A full back-send server, with one package. The future is now.
 
 ```js
+server.get('/', async (req, res) => {
+	var settings = await server.database.get('settings')
+	res.render('index', { config: settings, query: req.query }) // /views/index.ejs
+})
+
 server.post('/register', async (req, res) => {
 
 	var user = await server.database.create('users', {
