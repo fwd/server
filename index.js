@@ -31,6 +31,28 @@ var server = {
 		})
 	},
 	
+	
+	read(filepath, config) {
+		return new Promise((resolve, reject) => {
+			fs.readFile(filepath, config || { encoding: 'utf-8' }, function(err,data) {
+			    if (!err) {
+			        resolve(data)
+			    } else {
+			    	reject(err)
+			    }
+			});
+		})
+	},
+
+	write(filepath, body) {
+		return new Promise((resolve, reject) => {
+			fs.writeFile(filepath, body, function(err) {
+			    if (err) return reject(err)
+			    resolve(body)
+			}); 
+		})
+	},
+	
 	wait(delay) {
 		return this.sleep(delay)
 	},
