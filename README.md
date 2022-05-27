@@ -85,6 +85,8 @@ server.start(8080)
 
 ```
 
+> Includes **CORS** and **EJS** rendering for your convenience.
+
 ## Built-in HTTP Client (Axios)
 
 ```js
