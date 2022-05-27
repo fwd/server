@@ -114,17 +114,6 @@ const database = server.database
 
 See All Available Plugins: [@fwd/database](https://github.com/fwd/database)
 
-## Natural Language Timestamps
-
-```js
-const server = require('@fwd/server')
-server.timestamp() // UNIX timestamp
-server.timestamp('LL') // September 28, 1994
-server.timestamp('LLL') // September 28, 1994 4:30PM
-server.timestamp('LLL', 'America/New_York') // Optional, pass timezone.
-
-```
-
 ## In-Memory Caching
 
 ```js
@@ -135,8 +124,6 @@ server.cache('unique_key', { fname: 'Joe' })
 console.log( server.cache('unique_key') ) // { fname: 'Joe' }
 
 ```
-
-More info: [@fwd/cache](https://github.com/fwd/cache)
 
 ## Natural Language Date Parsing
 
@@ -150,6 +137,28 @@ server.date('next friday');
 ```
 
 More info: [@fwd/time](https://github.com/fwd/time)
+
+## Natural Language Timestamps
+
+```js
+const server = require('@fwd/server')
+server.time(5, 'seconds') // 5000
+server.time(1, 'minute') // 60000
+
+```
+
+## Simple Timestamps
+
+```js
+const server = require('@fwd/server')
+server.timestamp() // UNIX timestamp
+server.timestamp('LL') // September 28, 1994
+server.timestamp('LLL') // September 28, 1994 4:30PM
+server.timestamp('LLL', 'America/New_York') // Optional, pass timezone.
+
+```
+
+More info: [@fwd/cache](https://github.com/fwd/cache)
 
 ## Natural Language Cron
 
@@ -193,7 +202,7 @@ const server = require('@fwd/server')
 
 ```
 
-### Write File
+#### Write File
 
 ```js
 const server = require('@fwd/server')
@@ -204,7 +213,7 @@ const server = require('@fwd/server')
 
 ```
 
-### Append a File
+#### Append a File
 
 ```js
 const server = require('@fwd/server')
@@ -215,7 +224,7 @@ const server = require('@fwd/server')
 
 ```
 
-### Prepend a File
+#### Prepend a File
 
 ```js
 const server = require('@fwd/server')
@@ -226,7 +235,7 @@ const server = require('@fwd/server')
 
 ```
 
-## MomentJS
+### MomentJS Included
 
 ```js
 const server = require('@fwd/server')
