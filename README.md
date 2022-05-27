@@ -44,8 +44,6 @@ server.start(8080)
 
 ## Advanced Example
 
-> A full back-send server, with one package. The future is now.
-
 ```js
 server.get('/', async (req, res) => {
 	var settings = await server.database.get('settings')
