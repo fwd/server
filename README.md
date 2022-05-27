@@ -55,7 +55,7 @@ server.start(8080)
 
 ```
 
-## Middleware
+## HTTP Middleware
 
 ```js
 
@@ -63,7 +63,7 @@ const server = require('@fwd/server')
 
 server.use((req, res, next) => {
 	// do stuff
-	console.log( req.originalUrl )
+	console.log( req.ip, req.originalUrl )
 	next()
 })
 
