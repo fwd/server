@@ -2,7 +2,7 @@
 
 # @fwd/server
 
-> NodeJS Web Framework with lots of methods for everything you may need. 
+> NodeJS Web Toolkit
 
 ## Features
 
@@ -24,7 +24,7 @@
 npm install fwd/server
 ```
 
-## Simple example
+## Basic Example
 
 ```js
 
@@ -146,19 +146,6 @@ More info: [@fwd/cache](https://github.com/fwd/cache)
 const server = require('@fwd/server')
 server.date('next friday');
 // Fri Sep 12 2014 12:00:00 GMT-0500 (CDT)
-
-```
-
-Credit: Chrono-node
-
-## 
-
-```js
-const server = require('@fwd/server')
-;(async () => {
-	await server.sleep(1000)
-	await server.wait(1000) // alias
-})() 
 
 ```
 
