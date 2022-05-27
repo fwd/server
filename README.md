@@ -7,6 +7,12 @@
 ## Features
 
 - [Built-in HTTP Client (Axios)](#)
+- [Natural Language Cron](#natural-language-cron)
+- [Natural Language Timestamps](#natural-language-date-parsing)
+- [Built-in Crypto UUID Generator](#built-in-uuid-generator)
+- [Execute Shell from NodeJS](#built-in-uuid-generator)
+- [Filesystem Read/Write](#built-in-uuid-generator)
+- [Filesystem Prepend/Append](#built-in-uuid-generator)
 
 ## Install
 
@@ -86,7 +92,7 @@ const server = require('@fwd/server')
 
 ```
 
-## Built-in Database (JSON File)
+## Built-in Database (JSON File) 
 
 ```js
 const server = require('@fwd/server')
@@ -100,9 +106,9 @@ const database = server.database
 
 ```
 
-More info: [@fwd/database](https://github.com/fwd/database)
+See All Available Plugins: [@fwd/database](https://github.com/fwd/database)
 
-## Timestamp Method
+## Natural Language Timestamps
 
 ```js
 const server = require('@fwd/server')
@@ -113,7 +119,7 @@ server.timestamp('LLL', 'America/New_York') // Optional, pass timezone.
 
 ```
 
-## Cache Method (In-Memory)
+## In-Memory Caching
 
 ```js
 const server = require('@fwd/server')
@@ -150,14 +156,6 @@ const server = require('@fwd/server')
 
 ```
 
-## Natural Language Time Parsing
-
-```js
-const server = require('@fwd/server')
-server.time(1, 'hour') // 1 hour in milliseconds
-
-```
-
 More info: [@fwd/time](https://github.com/fwd/time)
 
 ## Natural Language Cron
@@ -172,7 +170,7 @@ server.cron(() => {
 
 More info: [@fwd/cron](https://github.com/fwd/cron)
 
-## Built-in UUID Generator
+## Generate Crypto UUID
 
 ```js
 const server = require('@fwd/server')
@@ -180,7 +178,7 @@ server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002
 server.uuid(true) // short uuid, 9e471b08
 ```
 
-## Built-in Shell Execution
+## Execute Shell from NodeJS
 
 ```js
 const server = require('@fwd/server')
@@ -191,7 +189,7 @@ const server = require('@fwd/server')
 
 ```
 
-## Built-in File Reading 
+## Built-in File Read/Write 
 
 ```js
 const server = require('@fwd/server')
@@ -202,12 +200,34 @@ const server = require('@fwd/server')
 
 ```
 
-## Built-in File Writting 
+### Write File
 
 ```js
 const server = require('@fwd/server')
 ;(async () => {
 	var data = await server.write('./notes.txt', 'John Doe')
+	console.log( data )
+})()
+
+```
+
+### Append a File
+
+```js
+const server = require('@fwd/server')
+;(async () => {
+	var data = await server.append('./names.txt', 'John Doe')
+	console.log( data )
+})()
+
+```
+
+### Prepend a File
+
+```js
+const server = require('@fwd/server')
+;(async () => {
+	var data = await server.prepend('./names.txt', 'Joe Mama')
 	console.log( data )
 })()
 
