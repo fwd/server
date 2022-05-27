@@ -29,7 +29,7 @@ server.start(8080, {
 })
 ```
 
-## Another example
+## Full Server Example
 
 ```js
 
@@ -51,7 +51,7 @@ server.post('/register', async (req, res) => {
 	
 })
 
-server.start(8081) 
+server.start(8080) 
 
 ```
 
