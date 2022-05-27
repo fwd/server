@@ -4,6 +4,10 @@
 
 > NodeJS Web Framework with lots of methods for everything you may need. 
 
+## Features
+
+- [Built-in HTTP Client (Axios)](#)
+
 ## Install
 
 ```bash
@@ -25,9 +29,7 @@ server.start(8080, {
 })
 ```
 
-All of human evolution has lead to this NPM pacakge. It has CORS included. So simple to use, and deploy.
-
-## Advanced example
+## Another example
 
 ```js
 
@@ -73,10 +75,7 @@ server.start(8080)
 
 ```
 
-## 2. Available Methods
-
-
-### Http (Axios)
+## Built-in HTTP Client (Axios)
 
 ```js
 const server = require('@fwd/server')
@@ -87,7 +86,7 @@ const server = require('@fwd/server')
 
 ```
 
-### Database
+## Built-in Database (JSON File)
 
 ```js
 const server = require('@fwd/server')
@@ -103,7 +102,7 @@ const database = server.database
 
 More info: [@fwd/database](https://github.com/fwd/database)
 
-### Timestamp
+## Timestamp Method
 
 ```js
 const server = require('@fwd/server')
@@ -114,7 +113,7 @@ server.timestamp('LLL', 'America/New_York') // Optional, pass timezone.
 
 ```
 
-### In-Memory Cache
+## Cache Method (In-Memory)
 
 ```js
 const server = require('@fwd/server')
@@ -127,8 +126,7 @@ console.log( server.cache('unique_key') ) // { fname: 'Joe' }
 
 More info: [@fwd/cache](https://github.com/fwd/cache)
 
-
-### Date Parsing (Chrono-node)
+## Natural Language Date Parsing
 
 > Added September 7th, 2021
 
@@ -139,7 +137,9 @@ server.date('next friday');
 
 ```
 
-### Sleep
+Credit: Chrono-node
+
+## 
 
 ```js
 const server = require('@fwd/server')
@@ -150,7 +150,7 @@ const server = require('@fwd/server')
 
 ```
 
-### Time
+## Natural Language Time Parsing
 
 ```js
 const server = require('@fwd/server')
@@ -160,7 +160,7 @@ server.time(1, 'hour') // 1 hour in milliseconds
 
 More info: [@fwd/time](https://github.com/fwd/time)
 
-### Cron
+## Natural Language Cron
 
 ```js
 const server = require('@fwd/server')
@@ -172,7 +172,7 @@ server.cron(() => {
 
 More info: [@fwd/cron](https://github.com/fwd/cron)
 
-### Uuid
+## Built-in UUID Generator
 
 ```js
 const server = require('@fwd/server')
@@ -180,13 +180,35 @@ server.uuid() // 9e471b08-38fe-11eb-adc1-0242ac120002
 server.uuid(true) // short uuid, 9e471b08
 ```
 
-### Exec
+## Built-in Shell Execution
 
 ```js
 const server = require('@fwd/server')
 ;(async () => {
 	var cpu_usage = await server.exec(`awk '/cpu /{print 100*($2+$4)/($2+$4+$5)}' /proc/stat`)
 	console.log( cpu_usage )
+})()
+
+```
+
+## Built-in File Reading 
+
+```js
+const server = require('@fwd/server')
+;(async () => {
+	var data = await server.read('./grades.csv')
+	console.log( data )
+})()
+
+```
+
+## Built-in File Writting 
+
+```js
+const server = require('@fwd/server')
+;(async () => {
+	var data = await server.write('./notes.txt', 'John Doe')
+	console.log( data )
 })()
 
 ```
