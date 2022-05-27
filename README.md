@@ -37,11 +37,6 @@ server.get('/', (req, res) => {
 	res.send("Hello, World!")
 }) 
 
-server.get('/joke', async (req, res) => {
-	var random_joke = (await server.http.get('https://api.chucknorris.io/jokes/random')).data
-	res.send( { joke: random_joke } )
-})
-
 server.start(8080)
 ```
 
@@ -65,6 +60,25 @@ server.post('/register', async (req, res) => {
 	
 })
 
+server.get('/joke', async (req, res) => {
+	
+	var random_joke = (await server.http.get('https://api.chucknorris.io/jokes/random')).data
+	
+	res.send( { joke: random_joke } )
+
+})
+
+server.get('/user/:id', async (req, res) => {
+
+	var user = await server.database.findOne('users', { id: req.params.id })
+			  // await server.database.findOne('users', req.params.id)
+
+	if (!user) return res.send({ error: 401 })
+	
+	res.send({ user })
+
+})
+
 server.start(8080, {
    timezone: 'America/New_York' // optional, just showing it off
 }) 
@@ -73,14 +87,14 @@ server.start(8080, {
 ## HTTP Middleware
 
 ```js
+server.get('/', (req, res) => {
+	res.send("Hello, World!")
+})
+
 server.use((req, res, next) => {
 	// do stuff
 	console.log( req.ip, req.originalUrl )
 	next()
-})
-
-server.get('/', (req, res) => {
-	res.send("Hello, World!")
 })
 
 server.start(8080)
