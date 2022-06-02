@@ -1,34 +1,33 @@
+const app = express()
 const fs = require("fs")
 const cors = require('cors')
 const axios = require('axios')
-const moment = require('moment-timezone')
+const crypto = require('crypto')
 const cron = require('@fwd/cron')
-const cache = require('@fwd/cache')
-const database = require('@fwd/database')
-
-const crypto = require('crypto');
-
-const chrono = require('chrono-node');
-
 const express = require('express')
-const app = express();
+const cache = require('@fwd/cache')
+const chrono = require('chrono-node')
+const database = require('@fwd/database')
+const moment = require('moment-timezone')
 
 var server = {
 
 	path: './',
 	routes: [],
 	http: axios,
-	moment: moment,
 	config: {},
+	
+	database,
+	moment,
 
 	exec(cmd) {
-		const exec = require('child_process').exec;
+		const exec = require('child_process').exec
 		return new Promise((resolve, reject) => {
 			exec(cmd, (error, stdout, stderr) => {
 			    if (error) {
-					console.log(error);
+					console.log(error)
 			    }
-			    resolve(stdout ? stdout : stderr);
+			    resolve(stdout ? stdout : stderr)
 			})
 		})
 	},
@@ -49,7 +48,7 @@ var server = {
 			fs.writeFile(filepath, body, function(err) {
 			    if (err) return reject(err)
 			    resolve(body)
-			}); 
+			})
 		})
 	},
 
@@ -65,7 +64,7 @@ var server = {
 				fs.close(fd, (err) => {
 				  if (err) return reject(err)
 				  resolve(body)
-				});
+				})
 			} else {
 				return false
 			}
@@ -78,7 +77,7 @@ var server = {
 				fs.appendFile(filepath, body, function (err) {
 					if (err) return reject(err)
 					resolve(body)
-				});
+				})
 			} else {
 				resolve(false)
 			}
@@ -115,7 +114,7 @@ var server = {
 
 	date(string, format, timezone) {
 		timezone = timezone || this.config.timezone || 'America/New_York'
-		return moment(chrono.parseDate(string)).tz(timezone).format(format || 'LLL');
+		return moment(chrono.parseDate(string)).tz(timezone).format(format || 'LLL')
 	},
 	
 	timestamp(format, timezone) {
@@ -176,10 +175,6 @@ var server = {
 		return cron
 
 	},
-	
-	database: (plugin, config) => {
-		return database(plugin, config)
-	},
 
 	uuid(length, prepend, no_dashes) {
 
@@ -223,10 +218,10 @@ var server = {
 			app.use(express.urlencoded({extended: true}))
 		}
 
-		app.set('view engine', config.viewEngine || 'ejs');
+		app.set('view engine', config.viewEngine || 'ejs')
 
 		if (fs.existsSync(views)) {
-		   app.set('views', config.viewsFolder || views);
+		   app.set('views', config.viewsFolder || views)
 		}
 		
 		var maxAge = config.maxAge ? config.maxAge : 'no-store'
