@@ -97,6 +97,30 @@ var server = {
 		})
 	},
 	
+	copy(source, destination) {
+		return new Promise((resolve, reject) => {
+			if(fs.existsSync(source)) {
+				fs.copyFile(source, destination, (err) => {
+				  resolve(err)
+				});
+			} else {
+				return resolve(false)
+			}
+		})
+	},
+	
+	list(dir) {
+		return new Promise((resolve, reject) => {
+			if(fs.existsSync(dir)) {
+				fs.readdir(dir, (err, files) => {
+					resolve(files)
+				});
+			} else {
+				return resolve(false)
+			}
+		})
+	},
+	
 	wait(delay) {
 		return this.sleep(delay)
 	},
