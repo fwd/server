@@ -14,10 +14,12 @@ const app = express()
 var server = {
 
 	path: './',
+	
 	routes: [],
-	http: axios,
+
 	config: {},
 	
+	http: axios,
 	database,
 	moment,
 
@@ -102,7 +104,7 @@ var server = {
 			if(fs.existsSync(source)) {
 				fs.copyFile(source, destination, (err) => {
 				  resolve(err)
-				});
+				})
 			} else {
 				return resolve(false)
 			}
@@ -114,7 +116,7 @@ var server = {
 			if(fs.existsSync(dir)) {
 				fs.readdir(dir, (err, files) => {
 					resolve(files)
-				});
+				})
 			} else {
 				return resolve(false)
 			}
@@ -276,6 +278,7 @@ var server = {
 		app.listen(port)
 
 	},
+
 	use(path, plugin) {
 		if (path && plugin) {
 			app.use(path, plugin)
@@ -283,14 +286,25 @@ var server = {
 		}
 		app.use(path)
 	},
+
 	cache(key, value, exp) {
 		return cache(key, value, exp)
 	},
 	
 	isEmail(email) {
 	    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	    return re.test(String(email).toLowerCase());
+	    return re.test(String(email).toLowerCase())
+	},
+
+	isPhone(phone) {
+	  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+	  if(phone.value.match(phoneno)) return true
+	  else return false
 	}
+
+	naturalLanguageRegex(string, humanInput) {
+
+	},
 	
 }
 
