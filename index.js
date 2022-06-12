@@ -285,7 +285,13 @@ var server = {
 	},
 	cache(key, value, exp) {
 		return cache(key, value, exp)
+	},
+	
+	isEmail(email) {
+	    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    return re.test(String(email).toLowerCase());
 	}
+	
 }
 
 var methods = ['get', 'post', 'put', 'patch', 'delete']
