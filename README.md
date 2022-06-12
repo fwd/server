@@ -2,26 +2,29 @@
 
 # @fwd/server
 
-> NodeJS Web Toolkit
+> Feature-packed NodeJS Web Framework
 
-## Features
+## Basic Tools
 
 - [Full Web Server (ExpressJS)](#advanced-example)
 - [HTTP Library (Axios)](#built-in-http-client-axios)
-- [In-Memory Manager](#in-memory-caching)
+
+## Commodities
+
+- [In-Memory Caching](#in-memory-caching)
 - [SQL-Like JSON Database](#built-in-database-json-file)
 - [Crypto UUID Generator](#generate-crypto-uuid)
 - [Natural Language Date Parsing](#natural-language-date-parsing)
 - [Natural Language Timestamps](#natural-language-timestamps)
-- [Natural Language Cron](#natural-language-cron)
 - [Filesystem Read/Write](#built-in-file-readwrite)
 - [Filesystem Prepend/Append](#built-in-uuid-generator)
-- [Execute Shell from NodeJS](#execute-shell-from-nodejs)
+- [Natural Language Cron](#natural-language-cron)
+- [Run SHELL from NodeJS](#execute-shell-from-nodejs)
 
 ## Install
 
 ```bash
-npm install fwd/server
+npm install @fwd/server
 ```
 
 ## Import
