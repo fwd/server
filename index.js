@@ -300,7 +300,7 @@ var server = {
 	  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
 	  if(phone.value.match(phoneno)) return true
 	  else return false
-	}
+	},
 
 	naturalLanguageRegex(string, humanInput) {
 
