@@ -4,13 +4,10 @@
 
 > Feature-packed NodeJS Web Framework
 
-## Basic Tools
+## Features
 
 - [Full Web Server (ExpressJS)](#advanced-example)
 - [HTTP Library (Axios)](#built-in-http-client-axios)
-
-## Commodities
-
 - [In-Memory Caching](#in-memory-caching)
 - [SQL-Like JSON Database](#built-in-database-json-file)
 - [Crypto UUID Generator](#generate-crypto-uuid)
