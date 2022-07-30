@@ -1,9 +1,5 @@
 ![Cover](https://raw.githubusercontent.com/fwd/server/master/.github/banner.png)
 
-# @fwd/server
-
-> Feature-packed NodeJS Web Framework
-
 ## Features
 
 - [Full Web Server (ExpressJS)](#advanced-example)
