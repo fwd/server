@@ -2,10 +2,10 @@
 
 ## Features
 
-- [Full Web Server (ExpressJS)](#advanced-example)
+- [Full Web Server (ExpressJS)](#advanced-usage)
 - [HTTP Library (Axios)](#built-in-http-client-axios)
 - [In-Memory Caching](#in-memory-caching)
-- [SQL-Like JSON Database](#built-in-database-json-file)
+- [SQL-Like JSON Database](#built-in-database)
 - [Crypto UUID Generator](#generate-crypto-uuid)
 - [Natural Language Date Parsing](#natural-language-date-parsing)
 - [Natural Language Timestamps](#natural-language-timestamps)
