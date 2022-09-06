@@ -20,15 +20,11 @@
 npm install @fwd/server
 ```
 
-## Import
-
-```bash
-const server = require('@fwd/server')
-```
-
-## Basic Example
+## Basic Usage
 
 ```js
+const server = require('@fwd/server')
+
 server.get('/', (req, res) => {
 	res.send("Hello, World!")
 }) 
@@ -38,7 +34,7 @@ server.start(8080)
 
 > Static files will be served from **/public** by default.
 
-## Advanced Example
+## Advanced Usage
 
 ```js
 server.get('/', async (req, res) => {
@@ -111,7 +107,7 @@ server.start(8080)
 })()
 ```
 
-## Built-in Database (JSON File) 
+## Built-in Database 
 
 ```js
 const database = server.database
@@ -165,7 +161,7 @@ setInterval(() => {
 server.timestamp() // UNIX timestamp
 server.timestamp('LL') // September 28, 1994
 server.timestamp('LLL') // September 28, 1994 4:30PM
-server.timestamp('LLL', 'America/New_York') // Optional, pass timezone.
+server.timestamp('LLL', 'America/New_York') // Optional, timezones.
 ```
 
 More info: [@fwd/cache](https://github.com/fwd/cache)
@@ -247,37 +243,17 @@ console.log(server.moment().format('LLLL'))
 console.log(server.moment().fromNow())
 ```
 
-## 👤 Author
-
-**Fresh Web Designs**
-
-📍 Miami, Florida (Crypto Capital of the World)
-
-* Github: [@fwd](https://github.com/fwd)
-* Website: [https://fwd.dev](https://fwd.dev)
-
 ## 🤝 Contributing
 
 Give a ⭐️ if this project helped you!
 
 Contributions, issues and feature requests are welcome! Feel free to check [issues page](https://github.com/fwd/server/issues).
 
-## ♥️ Donate 
-
-We accept Crypto donations at the following addresses: 
-
-https://nano.to/Development
-
-```
-# Nano
-nano_3gf57qk4agze3ozwfhe8w6oap3jmdb4ofe9qo1ra3wcs5jc888rwyt61ymea
-```
-
 ## 📝 License
 
 MIT License
 
-Copyright © 2022 [Fresh Web Designs](https://fwd.dev).
+Copyright © [@nano2dev](https://twitter.com/nano2dev).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
