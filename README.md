@@ -32,7 +32,7 @@ server.get('/', (req, res) => {
 server.start(8080)
 ```
 
-> Static files will be served from **/public** by default.
+> Static files are served from **/public** by default. Change with ```server.start(8080, { public: '/dist' })```.
 
 ## Advanced Usage
 
@@ -113,7 +113,7 @@ server.start(8080)
 const database = server.database
 ;(async () => {
 	await database.get('users') // list all users
-	await database.create('users', { name: john }) // creates user, id & create_at will be generated if not provided
+	await database.create('users', { name: john }) // creates user, id & created_at will be generated if not provided
 	await database.find('users', { name: 'Joe' }) // Filter users by query
 	await database.findOne('users', { id: 1 }) // find user with id of 1
 	await database.update('users', 1, { name: "John" }) // update user with id of 1 
