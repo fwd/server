@@ -17,7 +17,7 @@
 ## Install
 
 ```bash
-npm install @fwd/server
+npm install fwd/server
 ```
 
 ## Basic Usage
