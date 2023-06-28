@@ -204,7 +204,7 @@ server.uuid(true) // short uuid, 9e471b08
 })()
 ```
 
-#### Write File
+## Write File
 
 ```js
 ;(async () => {
@@ -216,7 +216,7 @@ server.uuid(true) // short uuid, 9e471b08
 })()
 ```
 
-#### Append a File
+## Append a File
 
 ```js
 ;(async () => {
@@ -226,7 +226,7 @@ server.uuid(true) // short uuid, 9e471b08
 
 ```
 
-#### Prepend a File
+## Prepend a File
 
 ```js
 ;(async () => {
@@ -236,7 +236,7 @@ server.uuid(true) // short uuid, 9e471b08
 
 ```
 
-### MomentJS Included
+## MomentJS Included
 
 ```js
 console.log(server.moment().format('LLLL'))
