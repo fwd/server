@@ -53,7 +53,7 @@ server.post('/register', async (req, res) => {
 	// fetching it again just to show off API
 	user = await server.database.findOne('users', { name: req.body.name })
 	
-	res.send(user)
+	res.send({ user })
 	
 })
 
@@ -61,7 +61,7 @@ server.get('/joke', async (req, res) => {
 	
 	var joke = (await server.http.get('https://api.chucknorris.io/jokes/random')).data
 	
-	res.send( { joke } )
+	res.send({ joke })
 
 })
 
