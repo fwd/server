@@ -301,10 +301,6 @@ var server = {
 	  if(phone.value.match(phoneno)) return true
 	  else return false
 	},
-
-	naturalLanguageRegex(string, humanInput) {
-
-	},
 	
 }
 
