@@ -1,6 +1,6 @@
 {
   "name": "@fwd/server",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "NodeJS Full-Stack Framework",
   "main": "index.js",
   "author": "Fresh Web Designs <hello@fwd.dev>",
@@ -16,13 +16,13 @@
   "dependencies": {
     "@fwd/cache": "*",
     "@fwd/cron": "*",
-    "@fwd/time": "*",
     "@fwd/database": "1.1.1",
-    "axios": "^0.21.1",
+    "@fwd/time": "*",
+    "axios": "^1.6.8",
     "chrono-node": "^2.3.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-    "ejs": "2.7.1",
+    "ejs": "^3.1.10",
     "express": "^4.17.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27"
