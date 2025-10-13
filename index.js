@@ -1,11 +1,10 @@
 const fs = require("fs")
 const cors = require('cors')
 const axios = require('axios')
-const crypto = require('crypto')
-const cron = require('@fwd/cron')
+const cron = require('./dependencies/cron')
 const express = require('express')
-const cache = require('@fwd/cache')
-const chrono = require('chrono-node')
+const cache = require('./dependencies/cache')
+const parseDate = require('./dependencies/date-parser')
 const database = require('@fwd/database')
 const moment = require('moment-timezone')
 
@@ -69,7 +68,7 @@ var server = {
 				  resolve(body)
 				})
 			} else {
-				return false
+				resolve(false)
 			}
 		})
 	},
@@ -136,12 +135,12 @@ var server = {
 	},
 	
 	time(int, string) {
-		return require('@fwd/time')(int, string)
+		return require('./dependencies/time')(int, string)
 	},
 
 	date(string, format, timezone) {
 		timezone = timezone || this.config.timezone || 'America/New_York'
-		return moment(chrono.parseDate(string)).tz(timezone).format(format || 'LLL')
+		return moment(parseDate(string)).tz(timezone).format(format || 'LLL')
 	},
 	
 	timestamp(format, timezone) {
@@ -205,7 +204,16 @@ var server = {
 
 	uuid(length, prepend, no_dashes) {
 
-		var uuid = crypto.randomUUID()
+		// Generate UUID v4 using vanilla JavaScript
+		function generateUUID() {
+			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+				var r = Math.random() * 16 | 0,
+					v = c == 'x' ? r : (r & 0x3 | 0x8);
+				return v.toString(16);
+			});
+		}
+
+		var uuid = generateUUID()
 		
 		if (length) {
 			uuid = uuid.slice(0, typeof length === 'number' ? length : 8)
@@ -232,7 +240,7 @@ var server = {
 		if (path) this.path = path
 
 		var views = this.path ? this.path + '/views' : 'views'
-		var public = this.path ? this.path + '/public' : 'public'
+		var publicDir = this.path ? this.path + '/public' : 'public'
 		var uploads = this.path ? this.path + '/uploads' : 'uploads'
 
 		app.use(cors())
@@ -253,7 +261,7 @@ var server = {
 		
 		var maxAge = config.maxAge ? config.maxAge : 'no-store'
 
-		app.use(express.static(config.publicFolder || public, { maxAge }))
+		app.use(express.static(config.publicFolder || publicDir, { maxAge }))
 		
 		if (config.uploadFolder) {
 			app.use(express.static(config.uploadFolder, { maxAge }))

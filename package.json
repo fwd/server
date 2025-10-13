@@ -14,17 +14,41 @@
     "url": "https://github.com/fwd/server/issues"
   },
   "dependencies": {
-    "@fwd/cache": "*",
-    "@fwd/cron": "*",
     "@fwd/database": "1.1.1",
-    "@fwd/time": "*",
     "axios": "^1.6.8",
-    "chrono-node": "^2.3.1",
     "cors": "^2.8.5",
-    "crypto": "^1.0.1",
     "ejs": "^3.1.10",
     "express": "^4.17.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./__tests__/setup.js"
+    ],
+    "collectCoverageFrom": [
+      "index.js",
+      "!node_modules/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "verbose": true
   }
 }
