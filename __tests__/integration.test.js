@@ -157,8 +157,8 @@ describe('Integration Tests', () => {
     test('should handle invalid inputs gracefully', () => {
       expect(server.isEmail(null)).toBe(false);
       expect(server.isEmail(undefined)).toBe(false);
-      expect(() => server.isPhone({ value: null })).toThrow();
-      expect(() => server.isPhone({ value: undefined })).toThrow();
+      expect(server.isPhone({ value: null })).toBe(false);
+      expect(server.isPhone({ value: undefined })).toBe(false);
     });
   });
 });

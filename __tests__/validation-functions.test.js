@@ -74,8 +74,8 @@ describe('Validation Functions', () => {
     });
 
     test('should handle null and undefined phone objects', () => {
-      expect(() => server.isPhone({ value: null })).toThrow();
-      expect(() => server.isPhone({ value: undefined })).toThrow();
+      expect(server.isPhone({ value: null })).toBe(false);
+      expect(server.isPhone({ value: undefined })).toBe(false);
     });
 
     test('should handle edge cases', () => {
