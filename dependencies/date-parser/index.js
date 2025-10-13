@@ -153,6 +153,22 @@ module.exports = (dateString) => {
     return isoDate;
   }
 
+  // Handle month name formats like "January 1, 2024"
+  const monthNameMatch = lowerString.match(/^(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2}),?\s+(\d{4})$/);
+  if (monthNameMatch) {
+    const monthNames = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+    const month = monthNames.indexOf(monthNameMatch[1]);
+    const day = parseInt(monthNameMatch[2]);
+    const year = parseInt(monthNameMatch[3]);
+    
+    if (month !== -1 && !isNaN(day) && !isNaN(year)) {
+      const parsedDate = new Date(year, month, day);
+      if (!isNaN(parsedDate.getTime())) {
+        return parsedDate;
+      }
+    }
+  }
+
   // Try common date formats
   const formats = [
     /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, // MM/DD/YYYY or DD/MM/YYYY
