@@ -436,33 +436,6 @@ var server = {
 		var publicDir = this.path ? this.path + '/public' : 'public'
 		var uploads = this.path ? this.path + '/uploads' : 'uploads'
 
-		
-		// Security: Configure CORS with safer defaults
-		const corsOptions = config.cors || {
-			origin: config.allowedOrigins || false, // Default to no CORS unless explicitly configured
-			credentials: false,
-			optionsSuccessStatus: 200
-		}
-
-		app.use(cors(corsOptions))
-
-		// Security: Add security headers
-		app.use((req, res, next) => {
-			// Prevent clickjacking
-			res.setHeader('X-Frame-Options', 'DENY')
-			// Prevent MIME type sniffing
-			res.setHeader('X-Content-Type-Options', 'nosniff')
-			// Enable XSS protection
-			res.setHeader('X-XSS-Protection', '1; mode=block')
-			// Strict Transport Security (only if HTTPS)
-			if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
-				res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
-			}
-			// Content Security Policy
-			res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'")
-			next()
-		})
-
 		// Security: Limit JSON payload size
 		app.use(express.json({
 			limit: config.jsonLimit || '1024mb' // Reduced from 999mb for security
